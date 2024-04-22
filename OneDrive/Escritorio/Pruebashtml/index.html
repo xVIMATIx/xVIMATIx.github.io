@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>index</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    #contenedor {
+        text-align: center;
+    }
+
+    #imagen {
+        max-width: 100%;
+        height: auto;
+        display: none;
+        margin-top: 20px;
+    }
+
+    #texto {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .boton {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    #botonIzquierdo {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    #botonDerecho {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .boton-desaparecer {
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div id="contenedor">
+    <img id="imagen" src="https://thumbs.dreamstime.com/b/gato-con-corbata-roja-y-rosas-un-cortado-de-arco-rojo-posando-junto-las-sobre-una-alfombra-blanda-en-el-estudio-170977692.jpg" alt="Imagen de ejemplo">
+    <p id="texto">Me perdonas Kenia Yamileth Netro Cuevas?</p>
+    <button id="botonIzquierdo" class="boton" onclick="mostrarImagen()">SI</button>
+    <button id="botonDerecho" class="boton" onclick="disminuirYComprobar()">no</button>
+</div>
+
+<script>
+    var intentosRestantes = 5;
+
+    function disminuirYComprobar() {
+        disminuir();
+        aumentarIzquierdo();
+        intentosRestantes--;
+        
+        if (intentosRestantes === 0) {
+            var botonDerecho = document.getElementById('botonDerecho');
+            botonDerecho.classList.add("boton-desaparecer");
+        }
+    }
+
+    function disminuir() {
+        var botonDerecho = document.getElementById('botonDerecho');
+        var fontSize = window.getComputedStyle(botonDerecho, null).getPropertyValue('font-size');
+        var nuevaFontSize = parseFloat(fontSize) - 2;
+        botonDerecho.style.fontSize = nuevaFontSize + 'px';
+    }
+
+    function aumentarIzquierdo() {
+        var botonIzquierdo = document.getElementById('botonIzquierdo');
+        var fontSize = window.getComputedStyle(botonIzquierdo, null).getPropertyValue('font-size');
+        var nuevaFontSize = parseFloat(fontSize) + 2;
+        botonIzquierdo.style.fontSize = nuevaFontSize + 'px';
+    }
+
+    function mostrarImagen() {
+        var imagen = document.getElementById('imagen');
+        imagen.style.display = 'block';
+
+        var texto = document.getElementById('texto');
+        texto.style.display = 'none';
+    }
+</script>
+</body>
+</html>
